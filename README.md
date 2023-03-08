@@ -1,2 +1,2 @@
-# rand-nbr-gen-in-c
-Few sudo-random number generators implement in C
+# Random number generators in C
+Few sudo-random number generators implemented in C.
