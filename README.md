@@ -1,2 +1,2 @@
 # Random number generators in C
-Few sudo-random number generators implemented in C.
+Few random number generators implemented in C.
