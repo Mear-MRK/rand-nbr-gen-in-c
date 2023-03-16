@@ -9,7 +9,6 @@
 
 #include "lcg.h"
 
-#define SZ UINT_MAX
 
 void bytes_to_bits_str_nb(const void *bytes, char *str, size_t nbr_bits) {
     unsigned char *ch_bytes = (unsigned char*)bytes;
@@ -24,8 +23,7 @@ void bytes_to_bits_str_nb(const void *bytes, char *str, size_t nbr_bits) {
     }
     
     *str = '\0';
-}
-        
+}    
 
 void insert_delimiters(const char *inp_str, char *out_str, unsigned int n, char dlm) {
     unsigned int i = 0;
@@ -40,12 +38,11 @@ void insert_delimiters(const char *inp_str, char *out_str, unsigned int n, char 
     *out_str = '\0';
 }
     
-    
-void test_lcg_rand(unsigned size) { 
+void test_lcg_rand(size_t size) { 
     uint32_t r;
     double sum = 0., sum2 = 0.;
     uint32_t max = 0, min = UINT32_MAX;
-    for(unsigned i=0; i!=size; i++){
+    for(size_t i=0; i < size; i++){
         r = lcg_rand();
         if (r < min)
             min = r;
@@ -55,17 +52,52 @@ void test_lcg_rand(unsigned size) {
         sum2 += r*r;
     }
     double avg = sum / size;
-    double std = sqrt(sum2/size - avg*avg);
-    printf("min: %u, max: %u, avg: %g, std: %g, std/avg: %g\n",
-            min, max, avg, std, std/avg);  
+    double std = sqrt(sum2/size - (sum/size)*(sum/size));
+    
+    uint32_t ideal_max = LCG_RAND_MAX;
+    double ideal_avg = ideal_max * 0.5;
+    double ideal_std = ideal_max * 0.28868394439521456; // ideal_max * sqrt(1./3 - 1./4 + 1./6/ideal_max);
+    
+    printf("      min: %u, max: %u, avg: %.16e\n", min, max, avg);
+    printf("IDEAL min: %u, max: %u, avg: %.16e\n", 0, ideal_max, ideal_avg);
+    
+    printf("      std: %.16e, std/avg: %.16e\n", std, std/avg);
+    printf("IDEAL std: %.16e, std/avg: %.16e\n", ideal_std, ideal_std/ideal_avg);
 }
 
-void test_lcg_flt(unsigned size) {
+void test_lcg_uint32(size_t size) { 
+    uint32_t r;
+    double sum = 0., sum2 = 0.;
+    uint32_t max = 0, min = UINT32_MAX;
+    for(size_t i=0; i < size; i++){
+        r = lcg_uint32();
+        if (r < min)
+            min = r;
+        if (r > max)
+            max = r;
+        sum += r;
+        sum2 += ((double)r)*r;
+    }
+    double avg = sum/size;
+    double std = sqrt(sum2/size - avg*avg);
+    
+    uint32_t ideal_max = UINT32_MAX;
+    double ideal_avg = ideal_max * 0.5;
+    double ideal_std = ideal_max * 0.2886751346620252997; // ideal_max * sqrt(1./3 - 1./4 + 1./6/ideal_max);
+    
+    printf("      min: %u, max: %u, avg: %.16e\n", min, max, avg);
+    printf("IDEAL min: %u, max: %u, avg: %.16e\n", 0, ideal_max, ideal_avg);
+    
+    printf("      std: %.16e, std/avg: %.16e\n", std, std/avg);
+    printf("IDEAL std: %.16e, std/avg: %.16e\n", ideal_std, ideal_std/ideal_avg);
+}
+
+void test_lcg_flt(size_t size) {
     double sum = 0., sum2 = 0.;
     float max = FLT_MIN, min = FLT_MAX;
     float f;
-    unsigned count_anomaly = 0;
-    for(unsigned i=0; i!=size; i++){
+    size_t count_anomaly = 0;
+    for(size_t i = 0; i < size; i++){
         f = lcg_flt();
         if (f < min)
             min = f;
@@ -76,12 +108,21 @@ void test_lcg_flt(unsigned size) {
         sum += f;
         sum2 += f*f;
     }
-    double avg = sum / size;
-    double std = sqrt(sum2/size - avg*avg);
-    printf("min: %.8e, max: %.8e, avg: %g, std: %g, std/avg: %g, nbr anomalies: %u\n",
-            min, max, avg, std, std/avg, count_anomaly);
+    float avg = sum / size;
+    float std = sqrt(sum2/size - (sum/size)*(sum/size));
+    if (count_anomaly)
+        printf("Nbr of anomalies: %llu\n", count_anomaly);
+    
+    float ideal_max = 1.0F - LCG_FLT_EPS;
+    float ideal_avg = ideal_max * 0.5F;
+    float ideal_std = ideal_max * 0.2886751518F; // ideal_max * sqrt(1./3 - 1./4 + LCG_FLT_EPS/6/ideal_max);
+    
+    printf("      min: %.8e, max: %.8e, avg: %.8e\n", min, max, avg);
+    printf("IDEAL min: %.8e, max: %.8e, avg: %.8e\n", 0.F, ideal_max, ideal_avg);
+    
+    printf("      std: %.8e, std/avg: %.8e\n", std, std/avg);
+    printf("IDEAL std: %.8e, std/avg: %.8e\n", ideal_std, ideal_std/ideal_avg);
 }
-
 
 size_t write_rng_bits_to_file(const char *filename, size_t nbr_rnds, uint32_t (*rng_rand)(void), int nbit) {
 
@@ -151,12 +192,12 @@ size_t test_period(uint32_t v) {
     for (size_t i = 0; i <= 2 * UINT_MAX; i++) {
         if ( lcg_rand() == v ) {
             if (! flag ) {
-                internal = lcg_intern_stat();
+                internal = lcg_rand_intern_stat();
                 flag = 1;
                 period = i;
                 continue;
             }
-            if (internal == lcg_intern_stat()) {
+            if (internal == lcg_rand_intern_stat()) {
                 period = i - period;
                 break;
             }
@@ -167,20 +208,15 @@ size_t test_period(uint32_t v) {
 }
 
 size_t test_intern_stat(uint32_t st) {
-    for (size_t i = 0; i <= UINT_MAX; i++) {
-        if (lcg_intern_stat() == st)
-            return i;
+    for (size_t i = 0; i <= UINT32_MAX; i++) {
         lcg_rand();
+        if (lcg_rand_intern_stat() == st)
+            return i+1;
     }
     return (size_t) -1;
 }
-    
 
 static int nbit = 15;
-
-uint32_t rnd(void) {
-    return lcg_rand_nbit(nbit);
-}
 
 uint32_t ones(void) {
     return ((~0U) >> (32-nbit));
@@ -194,21 +230,23 @@ uint32_t ozoz(void) {
 }
 
 int main(int argc, char **argv) {
-    // test_lcg_rand(SZ);
-    // test_lcg_flt(SZ);
-    // unsigned v = 12345;
-    if (argc > 1)
+    //test_lcg_rand((size_t)UINT32_MAX+1ull);
+    // test_lcg_uint32(2*(size_t)UINT32_MAX);
+    // test_lcg_flt((size_t)UINT32_MAX*2);
+    unsigned v = 11;
+    /* if (argc > 1)
         nbit = (unsigned) atoi(argv[1]);
     assert(nbit <= 32);
     size_t nbr_rnds = ceil(1024*1024.0/nbit/8.0)*8;
     if (argc > 2)
-        nbr_rnds = (size_t) atol(argv[2]);  
-    
+        nbr_rnds = (size_t) atol(argv[2]);  */
+    if (argc > 1)
+        v = (unsigned) atoi(argv[1]);
     // printf("Period of %u is %llu.\n", v, test_period(v));
-    // printf("After %llu steps reaching state %u.\n", test_intern_stat(v), v);
-    char filename[32];
+    printf("After %llu steps reaching state %u.\n", test_intern_stat(v), v);
+   /* char filename[32];
     sprintf(filename, "LCG%d.bin", nbit);
     size_t written = write_rng_bits_to_file(filename, nbr_rnds, rnd, nbit);
-    printf("\n%llu %ubit random numbers generated. %llu bytes written to %s.\n", nbr_rnds, nbit, written, filename);
+    printf("\n%llu %ubit random numbers generated. %llu bytes written to %s.\n", nbr_rnds, nbit, written, filename); */
     return 0;
 }

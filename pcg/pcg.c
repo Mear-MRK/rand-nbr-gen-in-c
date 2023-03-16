@@ -1,4 +1,4 @@
-#include "pc_rng.h"
+#include "pcg.h"
 #include <stdint.h>
 
 static uint64_t g_state = 0x4d595df4d0f33173;         // Or 0x853c49e6748fea9bULL
@@ -10,7 +10,7 @@ static inline uint32_t g_rotr32(uint32_t x, unsigned r)
     return x >> r | x << (-r & 31);
 }
 
-uint32_t pc_rng_uint(void)
+inline uint32_t pcg_uint32(void)
 {
     uint64_t x = g_state;
     unsigned count = (unsigned)(x >> 59); // 59 = 64 - 5
@@ -20,13 +20,13 @@ uint32_t pc_rng_uint(void)
     return g_rotr32((uint32_t)(x >> 27), count); // 27 = 32 - 5
 }
 
-void pc_rng_seed(uint64_t seed)
+void pcg_seed(uint64_t seed)
 {
     g_state = seed + g_inc;
-    (void)pc_rng_uint();
+    (void)pcg_uint32();
 }
 
-double pc_rng_dbl(void)
+inline double pcg_dbl(void)
 {
-    return (double)pc_rng_uint() / (PC_RNG_UINT_MAX + 1.0);
+    return (pcg_uint32() ^ pcg_uint32() << 21) * PCG_DBL_EPS;
 }
