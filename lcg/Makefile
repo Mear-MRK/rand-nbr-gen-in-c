@@ -8,10 +8,10 @@ all: lcg.o test.exe
 lcg.o: lcg.c lcg.h
 	$(CC) $(CFLAGS) $< -o $@
       
-test.exe: test.o lcg.o
+test.exe: lcg_test.o lcg.o
 	$(LD) -o $@ $^ $(LDFLAGS) 
 	
-test.o: test.c
+lcg_test.o: lcg_test.c
 	$(CC) $(CFLAGS) $< -o $@
     
 clean:

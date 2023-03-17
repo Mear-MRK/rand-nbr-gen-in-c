@@ -1,6 +1,6 @@
 512000 15bit LCG random number : 960000 bytes.
 
-SP800-22 tests:
+SP800-22 tests results:
 
 Tests of Distinguishability from Random
 TEST: monobit_test
