@@ -2,36 +2,43 @@
 #include <assert.h>
 #include "lcg.h"
 
-static uint32_t intern_stat_0 = 5U;
-static uint32_t intern_stat_1 = 13U;
+static uint32_t intern_stat_16 = 5;
+static uint64_t intern_stat_32 = 13;
 
-/* Gives the internal state of lcg_rand */
-uint32_t lcg_rand_intern_stat(void) 
+
+/* Gives the internal state of lcg_uint16 */
+uint32_t lcg_uint16_intern_stat(void) 
 {
-    return intern_stat_0;
+    return intern_stat_16;
+}
+
+/* Gives the internal state of lcg_uint32 */
+uint64_t lcg_uint32_intern_stat(void) 
+{
+    return intern_stat_32;
 }
 
 /* Seeds random number generator */
-void lcg_seed(uint32_t s)
+void lcg_seed(uint64_t s)
 {
-    intern_stat_0 = (5U + s) & 0x7FFFFFFFU;
-    intern_stat_1 = (13U + s) & 0x7FFFFFFFU;
+    intern_stat_16 = (uint32_t)(5 + s);
+    intern_stat_32 = 13 + s;
 }
 
-/* Gives 15bit random unsigned integer i such that 0 <= i < 2^15 */
-inline uint32_t lcg_rand(void)
+/* Gives 16-bit random unsigned integer i such that 0 <= i < 2^16 */
+inline uint32_t lcg_uint16(void)
 {
-    intern_stat_0 = (214013U * intern_stat_0 + 2531011U) & 0x7FFFFFFFU;
-    return intern_stat_0 >> 16;
+    intern_stat_16 = 32310901 * intern_stat_16 + 17;
+    return intern_stat_16 >> 16;
 }
 
-/* Gives (32bit) uint32_t random integer i: 0 <= i < 2^32 */
-inline uint32_t lcg_uint32(void)
-{
-    intern_stat_0 = (214013U * intern_stat_0 + 2531011U) & 0x7FFFFFFFU;
-    intern_stat_1 = (214013U * intern_stat_1 + 2531011U) & 0x7FFFFFFFU;
-    return intern_stat_0 >> 15 | intern_stat_1 >> 15 << 16;
+
+/* Gives 32-bit random unsigned integer i: 0 <= i < 2^32 */
+inline uint32_t lcg_uint32(void) {
+    intern_stat_32 = 3935559000370003845ull * intern_stat_32 + 13;
+    return (uint32_t)(intern_stat_32 >> 32);
 }
+
 
 /* 
  * Gives uniformly distributed random float32 (single) f such that 0.0F <= f < 1.0F.
@@ -40,8 +47,6 @@ inline uint32_t lcg_uint32(void)
  */
 inline float lcg_flt(void)
 {
-    intern_stat_0 = (214013U * intern_stat_0 + 2531011U) & 0x7FFFFFFFU;
-    intern_stat_1 = (214013U * intern_stat_1 + 2531011U) & 0x7FFFFFFFU;
-    return (intern_stat_0 >> 19 | intern_stat_1 >> 19 << 12) * LCG_FLT_EPS;
+    intern_stat_32 = 3935559000370003845ull * intern_stat_32 + 13;
+    return (intern_stat_32 >> 40) * LCG_FLT_EPS;
 }
-
