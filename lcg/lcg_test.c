@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <assert.h>
+#include <time.h>
 
 #include "lcg.h"
 
@@ -101,7 +102,7 @@ size_t write_rng_bytes_to_file(const char *filename, size_t nbr_rnds, uint32_t (
     FILE *sm_file = NULL;
     if (!(sm_file = fopen(filename, "wb"))) {
         perror("ERR: ");
-        return (size_t)-1;
+        return (size_t)0;
     }
     
     size_t written = 0;
@@ -109,6 +110,25 @@ size_t write_rng_bytes_to_file(const char *filename, size_t nbr_rnds, uint32_t (
     for (size_t i = 0; i < nbr_rnds; i++) {
         uint32_t rnd = rng();
         written += fwrite(&rnd, 1, nbr_bytes_rng, sm_file);
+    }
+
+    fclose(sm_file);
+    return written;
+}
+
+size_t write_float_rng_to_txtfile(const char *filename, size_t nbr_rnds, float (*rng)(void)) {
+    
+    FILE *sm_file = NULL;
+    if (!(sm_file = fopen(filename, "w"))) {
+        perror("ERR: ");
+        return (size_t)0;
+    }
+    
+    size_t written = 0;
+
+    for (size_t i = 0; i < nbr_rnds; i++) {
+        float rnd = rng();
+        written += fprintf(sm_file, "%.8e\n", rnd);
     }
 
     fclose(sm_file);
@@ -142,34 +162,47 @@ size_t lcg_uint16_reaching_intern_stat(uint32_t st) {
 }
 
 
-
 int main(int argc, char **argv) {
+    
+    uint64_t ex_sd = 0ull;
+    char *end=NULL;
+    if (argc > 1)
+        ex_sd = (uint64_t) strtoull(argv[1], &end, 0);
+    
+    lcg_seed(((uint64_t)time(NULL)) ^ ex_sd);
+    
     
     puts("lcg_uint16 test:");
     test_lcg_uint16((size_t)UINT32_MAX+1ull);
     
     puts("lcg_uint32 test:");
-    test_lcg_uint32(2*(size_t)UINT32_MAX);
+    test_lcg_uint32((size_t)UINT32_MAX);
     
     puts("lcg_flt test:");
-    test_lcg_flt(2*(size_t)UINT32_MAX);
-        
+    test_lcg_flt((size_t)UINT32_MAX);
+    
+    
     uint32_t st = 12345;
-    if (argc > 1)
-        st = (uint32_t) atol(argv[1]);
     printf("Period of lcg_uint16 state %u is %zu. It should be %zu for any state.\n", 
             st, lcg_uint16_intern_stat_period(st), (size_t)UINT32_MAX+1);
     
     
-    char filename[32];
+    char filename[32]; *filename = 0;
+    
     sprintf(filename, "LCG%d.bin", 16);
-    size_t nbr_rnds = 512000;
+    size_t nbr_rnds = 512*1024;
     size_t written = write_rng_bytes_to_file(filename, nbr_rnds, lcg_uint16, 2);
     printf("%zu 16-bit random numbers generated. %zu bytes written to %s.\n", nbr_rnds, written, filename);
+    
     sprintf(filename, "LCG%d.bin", 32);
-    nbr_rnds = 256000;
+    nbr_rnds = 256*1024;
     written = write_rng_bytes_to_file(filename, nbr_rnds, lcg_uint32, 4);
     printf("%zu 32-bit random numbers generated. %zu bytes written to %s.\n", nbr_rnds, written, filename);
-    
+    /*
+    strcpy(filename, "LCG_FLT32.txt");
+    nbr_rnds = 51320000;
+    written = write_float_rng_to_txtfile(filename, nbr_rnds, lcg_flt);
+    printf("%zu float32 random numbers generated. %zu bytes written to %s.\n", nbr_rnds, written, filename);
+    */
     return 0;
 }

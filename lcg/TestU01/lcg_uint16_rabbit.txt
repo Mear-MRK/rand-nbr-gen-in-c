@@ -1,0 +1,819 @@
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+          Starting Rabbit:   nb = 8388608
+          Version: TestU01 1.2.3
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+
+***********************************************************
+HOST = , Linux
+
+ufile_CreateReadBin:   LCG16.bin
+
+
+smultin_MultinomialBitsOver test:
+-----------------------------------------------
+   N =  1,  n = 8388608,  r =  0,   s = 32,   L =   38,
+       Sparse =   TRUE
+
+       Number of bits = n = 8388608
+       Number of cells = 2^L =       274877906944
+       Expected number per cell =  1 /      32768
+       EColl = n^2 / (2k) =          128
+       Hashing =   TRUE
+
+       Collision test
+       CollisionOver:   density = n / k =  1 /   32768.00
+       Expected number of collisions = Mu =     128.00
+
+
+-----------------------------------------------
+Results of CollisionOver test:
+
+POISSON approximation                 :
+Expected number of collisions = N*Mu  :      128.00
+Observed number of collisions         :       99
+p-value of test                       :    0.9954
+
+-----------------------------
+Total number of cells containing j balls
+
+  j =  0                              :     274869518435
+  j =  1                              :          8388410
+  j =  2                              :               99
+  j =  3                              :                0
+  j =  4                              :                0
+  j =  5                              :                0
+
+-----------------------------------------------
+CPU time used                    :  00:00:04.87
+
+Generator state:
+ 8388608  bits have been read.
+
+
+
+
+***********************************************************
+HOST = , Linux
+
+ufile_CreateReadBin:   LCG16.bin
+
+
+snpair_ClosePairsBitMatch test:
+-----------------------------------------------
+   N =  1,  n = 131072,  r =  0,  t = 2
+
+
+-----------------------------------------------
+Max of all bit distances              :   15.00
+p-value of test                       :    0.86
+
+-----------------------------------------------
+CPU time used                    :  00:00:00.03
+
+Generator state:
+ 8388608  bits have been read.
+
+
+
+
+***********************************************************
+HOST = , Linux
+
+ufile_CreateReadBin:   LCG16.bin
+
+
+snpair_ClosePairsBitMatch test:
+-----------------------------------------------
+   N =  1,  n = 65536,  r =  0,  t = 4
+
+
+-----------------------------------------------
+Max of all bit distances              :    6.00
+p-value of test                       :    0.9997    *****
+
+-----------------------------------------------
+CPU time used                    :  00:00:00.05
+
+Generator state:
+ 8388608  bits have been read.
+
+
+
+
+***********************************************************
+HOST = , Linux
+
+ufile_CreateReadBin:   LCG16.bin
+
+
+svaria_AppearanceSpacings test:
+-----------------------------------------------
+   N =  1,   Q = 393216,   K = 393216,   r = 0,   s = 30,   L = 10
+
+   Sequences of n = (K + Q)L =      7864320 bits
+   Q = 393216 initialization blocks
+   K = 393216 blocks for the test
+   the blocks have L = 10 bits
+
+
+
+-----------------------------------------------
+Normal statistic                      :   -0.34
+p-value of test                       :    0.63
+
+-----------------------------------------------
+CPU time used                    :  00:00:00.01
+
+Generator state:
+ 8388608  bits have been read.
+
+
+
+
+***********************************************************
+HOST = , Linux
+
+ufile_CreateReadBin:   LCG16.bin
+
+
+scomp_LinearComp test:
+-----------------------------------------------
+   N =  1,  n = 15776,  r =  0,    s = 32
+
+
+
+-----------------------------------------------
+Number of degrees of freedom          :    7
+Chi2 statistic for size of jumps      :    4.60
+p-value of test                       :    0.71
+
+
+-----------------------------------------------
+Normal statistic for number of jumps  :   -0.23
+p-value of test                       :    0.59
+
+
+
+-----------------------------------------------
+CPU time used                    :  00:00:00.21
+
+Generator state:
+ 15776  bits have been read.
+
+
+
+
+***********************************************************
+HOST = , Linux
+
+ufile_CreateReadBin:   LCG16.bin
+
+
+scomp_LempelZiv test:
+-----------------------------------------------
+   N =  1,  n = 8388608,  r =  0,   s =   32,   k =   23
+
+
+-----------------------------------------------
+Normal statistic                      :    1.57
+p-value of test                       :    0.06
+
+-----------------------------------------------
+CPU time used                    :  00:00:00.25
+
+Generator state:
+ 8388608  bits have been read.
+
+
+
+
+***********************************************************
+HOST = , Linux
+
+ufile_CreateReadBin:   LCG16.bin
+
+
+sspectral_Fourier1 test:
+-----------------------------------------------
+   N =  1,  n = 1048576,  r =  0,   s =   32,   k =   20
+
+
+-----------------------------------------------
+Normal statistic                      :    0.62
+p-value of test                       :    0.27
+
+-----------------------------------------------
+CPU time used                    :  00:00:00.23
+
+Generator state:
+ 1048576  bits have been read.
+
+
+
+
+***********************************************************
+HOST = , Linux
+
+ufile_CreateReadBin:   LCG16.bin
+
+
+sspectral_Fourier3 test:
+-----------------------------------------------
+   N = 4032,  n = 2048,  r =  0,   s =   32,   k =   11
+
+
+-----------------------------------------------
+
+Kolmogorov-Smirnov+ statistic = D+    :   0.034
+p-value of test                       :    0.29
+
+Kolmogorov-Smirnov- statistic = D-    :   0.024
+p-value of test                       :    0.56
+
+Anderson-Darling statistic = A2       :    0.68
+p-value of test                       :    0.58
+
+-----------------------------------------------
+CPU time used                    :  00:00:00.08
+
+Generator state:
+ 8386560  bits have been read.
+
+
+
+
+***********************************************************
+HOST = , Linux
+
+ufile_CreateReadBin:   LCG16.bin
+
+
+sstring_LongestHeadRun test:
+-----------------------------------------------
+   N =  1,  n = 60,  r =  0,   s = 32,   L = 139808
+
+
+-----------------------------------------------
+Number of degrees of freedom          :    3
+Chi-square statistic                  :    5.00
+p-value of test                       :    0.17
+
+-----------------------------------------------
+Global longest run of 1               :   23.00
+p-value of test                       :    0.39
+
+
+
+-----------------------------------------------
+CPU time used                    :  00:00:00.04
+
+Generator state:
+ 8388480  bits have been read.
+
+
+
+
+***********************************************************
+HOST = , Linux
+
+ufile_CreateReadBin:   LCG16.bin
+
+
+sstring_PeriodsInStrings test:
+-----------------------------------------------
+   N =  1,  n = 262144,  r =  0,   s =   31
+
+
+-----------------------------------------------
+Number of degrees of freedom          :   80
+Chi-square statistic                  :  114.12
+p-value of test                       :  7.4e-3
+
+-----------------------------------------------
+CPU time used                    :  00:00:00.01
+
+Generator state:
+ 8388608  bits have been read.
+
+
+
+
+***********************************************************
+HOST = , Linux
+
+ufile_CreateReadBin:   LCG16.bin
+
+
+sstring_HammingWeight test:
+-----------------------------------------------
+   N =  1,  n = 262144,  r =  0,   s = 32,   L = 32
+
+
+-----------------------------------------------
+Number of degrees of freedom          :   22
+Chi-square statistic                  :   18.47
+p-value of test                       :    0.68
+
+-----------------------------------------------
+CPU time used                    :  00:00:00.00
+
+Generator state:
+ 8388608  bits have been read.
+
+
+
+
+***********************************************************
+HOST = , Linux
+
+ufile_CreateReadBin:   LCG16.bin
+
+
+sstring_HammingCorr test:
+-----------------------------------------------
+   N =  1,  n = 262144,  r =  0,   s = 32,   L = 32
+
+
+
+-----------------------------------------------
+Normal statistic                      :    0.40
+p-value of test                       :    0.35
+
+-----------------------------------------------
+CPU time used                    :  00:00:00.00
+
+Generator state:
+ 8388608  bits have been read.
+
+
+
+
+***********************************************************
+HOST = , Linux
+
+ufile_CreateReadBin:   LCG16.bin
+
+
+sstring_HammingCorr test:
+-----------------------------------------------
+   N =  1,  n = 131072,  r =  0,   s = 32,   L = 64
+
+
+
+-----------------------------------------------
+Normal statistic                      :    1.21
+p-value of test                       :    0.11
+
+-----------------------------------------------
+CPU time used                    :  00:00:00.00
+
+Generator state:
+ 8388608  bits have been read.
+
+
+
+
+***********************************************************
+HOST = , Linux
+
+ufile_CreateReadBin:   LCG16.bin
+
+
+sstring_HammingCorr test:
+-----------------------------------------------
+   N =  1,  n = 65536,  r =  0,   s = 32,   L = 128
+
+
+
+-----------------------------------------------
+Normal statistic                      :   -0.99
+p-value of test                       :    0.84
+
+-----------------------------------------------
+CPU time used                    :  00:00:00.00
+
+Generator state:
+ 8388608  bits have been read.
+
+
+
+
+***********************************************************
+HOST = , Linux
+
+ufile_CreateReadBin:   LCG16.bin
+
+
+sstring_HammingIndep test:
+-----------------------------------------------
+   N =  1,  n = 262144,  r =  0,   s = 32,   L = 16,   d = 0
+
+
+
+Counters with expected numbers >= 10
+-----------------------------------------------
+Number of degrees of freedom          :  169
+Chi-square statistic                  :  192.36
+p-value of test                       :    0.11
+
+-----------------------------------------------
+CPU time used                    :  00:00:00.00
+
+Generator state:
+ 8388608  bits have been read.
+
+
+
+
+***********************************************************
+HOST = , Linux
+
+ufile_CreateReadBin:   LCG16.bin
+
+
+sstring_HammingIndep test:
+-----------------------------------------------
+   N =  1,  n = 131072,  r =  0,   s = 32,   L = 32,   d = 0
+
+
+
+Counters with expected numbers >= 10
+-----------------------------------------------
+Number of degrees of freedom          :  277
+Chi-square statistic                  :  266.19
+p-value of test                       :    0.67
+
+-----------------------------------------------
+CPU time used                    :  00:00:00.00
+
+Generator state:
+ 8388608  bits have been read.
+
+
+
+
+***********************************************************
+HOST = , Linux
+
+ufile_CreateReadBin:   LCG16.bin
+
+
+sstring_HammingIndep test:
+-----------------------------------------------
+   N =  1,  n = 65536,  r =  0,   s = 32,   L = 64,   d = 0
+
+
+
+Counters with expected numbers >= 10
+-----------------------------------------------
+Number of degrees of freedom          :  421
+Chi-square statistic                  :  406.23
+p-value of test                       :    0.69
+
+-----------------------------------------------
+CPU time used                    :  00:00:00.00
+
+Generator state:
+ 8388608  bits have been read.
+
+
+
+
+***********************************************************
+HOST = , Linux
+
+ufile_CreateReadBin:   LCG16.bin
+
+
+sstring_AutoCor test:
+-----------------------------------------------
+   N =  1,  n = 8388545,  r =  0,   s = 32,   d = 1
+
+
+-----------------------------------------------
+Normal statistic                      :   -0.48
+p-value of test                       :    0.68
+
+-----------------------------------------------
+CPU time used                    :  00:00:00.00
+
+Generator state:
+ 8388576  bits have been read.
+
+
+
+
+***********************************************************
+HOST = , Linux
+
+ufile_CreateReadBin:   LCG16.bin
+
+
+sstring_AutoCor test:
+-----------------------------------------------
+   N =  1,  n = 8388546,  r =  0,   s = 32,   d = 2
+
+
+-----------------------------------------------
+Normal statistic                      :   -0.67
+p-value of test                       :    0.75
+
+-----------------------------------------------
+CPU time used                    :  00:00:00.01
+
+Generator state:
+ 8388576  bits have been read.
+
+
+
+
+***********************************************************
+HOST = , Linux
+
+ufile_CreateReadBin:   LCG16.bin
+
+
+sstring_Run test:
+-----------------------------------------------
+   N =  1,  n = 1677721,  r =  0,   s =   32
+
+
+-----------------------------------------------
+Total number of 1 runs:  1677726
+
+Number of degrees of freedom          :   34
+Chi2 statistic for number of runs     :   37.49
+p-value of test                       :    0.31
+
+
+-----------------------------------------------
+Total number of bits:  6713312
+
+Normal statistic for number of bits   :    0.66
+p-value of test                       :    0.25
+
+
+
+-----------------------------------------------
+CPU time used                    :  00:00:00.04
+
+Generator state:
+ 6713312  bits have been read.
+
+
+
+
+***********************************************************
+HOST = , Linux
+
+ufile_CreateReadBin:   LCG16.bin
+
+
+smarsa_MatrixRank test:
+-----------------------------------------------
+   N =  1,  n = 8192,  r =  0,    s = 32,    L = 32,    k = 32
+
+
+-----------------------------------------------
+Number of degrees of freedom          :    3
+Chi-square statistic                  :    1.44
+p-value of test                       :    0.70
+
+-----------------------------------------------
+CPU time used                    :  00:00:00.04
+
+Generator state:
+ 8388608  bits have been read.
+
+
+
+
+***********************************************************
+HOST = , Linux
+
+ufile_CreateReadBin:   LCG16.bin
+
+
+smarsa_MatrixRank test:
+-----------------------------------------------
+   N =  1,  n = 81,  r =  0,    s = 32,    L = 320,    k = 320
+
+
+-----------------------------------------------
+Number of degrees of freedom          :    2
+Chi-square statistic                  :    5.01
+p-value of test                       :    0.08
+
+-----------------------------------------------
+CPU time used                    :  00:00:00.05
+
+Generator state:
+ 8294400  bits have been read.
+
+
+
+
+***********************************************************
+HOST = , Linux
+
+ufile_CreateReadBin:   LCG16.bin
+
+
+swalk_RandomWalk1 test:
+-----------------------------------------------
+   N =  1,  n = 65536,  r =  0,   s = 32,   L0 =  128,   L1 =  128
+
+
+
+-----------------------------------------------
+Test on the values of the Statistic H
+
+Number of degrees of freedom          :   40
+ChiSquare statistic                   :   49.98
+p-value of test                       :    0.13
+
+
+-----------------------------------------------
+Test on the values of the Statistic M
+
+Number of degrees of freedom          :   40
+ChiSquare statistic                   :   33.75
+p-value of test                       :    0.75
+
+
+-----------------------------------------------
+Test on the values of the Statistic J
+
+Number of degrees of freedom          :   64
+ChiSquare statistic                   :   42.26
+p-value of test                       :    0.98
+
+
+-----------------------------------------------
+Test on the values of the Statistic R
+
+Number of degrees of freedom          :   35
+ChiSquare statistic                   :   33.58
+p-value of test                       :    0.54
+
+
+-----------------------------------------------
+Test on the values of the Statistic C
+
+Number of degrees of freedom          :   21
+ChiSquare statistic                   :   14.26
+p-value of test                       :    0.86
+
+
+-----------------------------------------------
+CPU time used                    :  00:00:00.04
+
+Generator state:
+ 8388608  bits have been read.
+
+
+
+
+***********************************************************
+HOST = , Linux
+
+ufile_CreateReadBin:   LCG16.bin
+
+
+swalk_RandomWalk1 test:
+-----------------------------------------------
+   N =  1,  n = 8192,  r =  0,   s = 32,   L0 = 1024,   L1 = 1024
+
+
+
+-----------------------------------------------
+Test on the values of the Statistic H
+
+Number of degrees of freedom          :   86
+ChiSquare statistic                   :  101.35
+p-value of test                       :    0.12
+
+
+-----------------------------------------------
+Test on the values of the Statistic M
+
+Number of degrees of freedom          :   86
+ChiSquare statistic                   :   76.38
+p-value of test                       :    0.76
+
+
+-----------------------------------------------
+Test on the values of the Statistic J
+
+Number of degrees of freedom          :  512
+ChiSquare statistic                   :  512.23
+p-value of test                       :    0.49
+
+
+-----------------------------------------------
+Test on the values of the Statistic R
+
+Number of degrees of freedom          :   84
+ChiSquare statistic                   :   86.44
+p-value of test                       :    0.41
+
+
+-----------------------------------------------
+Test on the values of the Statistic C
+
+Number of degrees of freedom          :   47
+ChiSquare statistic                   :   36.97
+p-value of test                       :    0.85
+
+
+-----------------------------------------------
+CPU time used                    :  00:00:00.04
+
+Generator state:
+ 8388608  bits have been read.
+
+
+
+
+***********************************************************
+HOST = , Linux
+
+ufile_CreateReadBin:   LCG16.bin
+
+
+swalk_RandomWalk1 test:
+-----------------------------------------------
+   N =  1,  n = 837,  r =  0,   s = 32,   L0 = 10016,   L1 = 10016
+
+
+
+-----------------------------------------------
+Test on the values of the Statistic H
+
+Number of degrees of freedom          :   69
+ChiSquare statistic                   :   63.41
+p-value of test                       :    0.67
+
+
+-----------------------------------------------
+Test on the values of the Statistic M
+
+Number of degrees of freedom          :   69
+ChiSquare statistic                   :   82.78
+p-value of test                       :    0.12
+
+
+-----------------------------------------------
+Test on the values of the Statistic J
+
+Number of degrees of freedom          :   81
+ChiSquare statistic                   :  110.72
+p-value of test                       :    0.02
+
+
+-----------------------------------------------
+Test on the values of the Statistic R
+
+Number of degrees of freedom          :   69
+ChiSquare statistic                   :   78.88
+p-value of test                       :    0.19
+
+
+-----------------------------------------------
+Test on the values of the Statistic C
+
+Number of degrees of freedom          :   64
+ChiSquare statistic                   :   65.76
+p-value of test                       :    0.42
+
+
+-----------------------------------------------
+CPU time used                    :  00:00:00.03
+
+Generator state:
+ 8383392  bits have been read.
+
+
+
+
+
+========= Summary results of Rabbit =========
+
+ Version:          TestU01 1.2.3
+ File:             LCG16.bin
+ Number of bits:   8388608
+ Number of statistics:  39
+ Total CPU time:   00:00:06.23
+ The following tests gave p-values outside [0.001, 0.9990]:
+ (eps  means a value < 1.0e-300):
+ (eps1 means a value < 1.0e-15):
+
+       Test                          p-value
+ ----------------------------------------------
+  3  ClosePairsBitMatch, t = 4       0.9997 
+ ----------------------------------------------
+ All other tests were passed
+
+
+
