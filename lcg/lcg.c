@@ -29,15 +29,15 @@ void lcg_seed(uint64_t s)
 }
 
 /* Gives 16-bit random unsigned integer i such that 0 <= i < 2^16 */
-inline uint32_t lcg_uint16(void)
+uint16_t lcg_uint16(void)
 {
     intern_stat_16 = 32310901u * intern_stat_16 + 425894797u;
-    return intern_stat_16 >> 16;
+    return (uint16_t)(intern_stat_16 >> 16);
 }
 
 
 /* Gives 32-bit random unsigned integer i: 0 <= i < 2^32 */
-inline uint32_t lcg_uint32(void) {
+uint32_t lcg_uint32(void) {
     intern_stat_32 = 3935559000370003845ull * intern_stat_32 + 3210482851ull;
     return (uint32_t)(intern_stat_32 >> 32);
 }
@@ -48,7 +48,7 @@ inline uint32_t lcg_uint32(void) {
  * It can generate 2^24 possible values; This number has been chosen intentionally because
  * minimum possible difference between two float32 in the range of [0.5, 1] is 2^-24.
  */
-inline float lcg_flt(void)
+float lcg_flt(void)
 {
     return (lcg_uint32() >> 8) * LCG_FLT_EPS;
 }

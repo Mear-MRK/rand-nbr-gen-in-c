@@ -1,5 +1,5 @@
 CC:=gcc
-CFLAGS:=-std=c99 -Wall -Wextra -O2 -c
+CFLAGS:=-std=c99 -Wall -Wextra -O3 -c
 LD=$(CC)
 LDFLAGS:=-lm
 

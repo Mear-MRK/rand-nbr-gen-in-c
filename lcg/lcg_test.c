@@ -12,9 +12,9 @@
 
     
 void test_lcg_uint16(size_t size) { 
-    uint32_t r;
+    uint16_t r;
     double sum = 0., sum2 = 0.;
-    uint32_t max = 0, min = UINT32_MAX;
+    uint16_t max = 0, min = UINT16_MAX;
     for(size_t i=0; i < size; i++){
         r = lcg_uint16();
         if (r < min)
@@ -22,12 +22,12 @@ void test_lcg_uint16(size_t size) {
         if (r > max)
             max = r;
         sum += r;
-        sum2 += r*r;
+        sum2 += (uint32_t)r*r;
     }
     double avg = sum / size;
-    double std = sqrt(sum2/size - (sum/size)*(sum/size));
+    double std = sqrt(sum2/size - avg*avg);
     
-    uint32_t ideal_max = LCG_UINT16_MAX;
+    uint16_t ideal_max = LCG_UINT16_MAX;
     double ideal_avg = ideal_max * 0.5;
     double ideal_std = ideal_max * sqrt(1./3 - 1./4 + 1./6/ideal_max);
     
@@ -97,8 +97,8 @@ void test_lcg_flt(size_t size) {
     printf("IDEAL std: %.8e, std/avg: %.8e\n", ideal_std, ideal_std/ideal_avg);
 }
 
-size_t write_rng_bytes_to_file(const char *filename, size_t nbr_rnds, uint32_t (*rng)(void), unsigned nbr_bytes_rng) {
-    assert(nbr_bytes_rng <= 4);
+size_t write_u32_rng_to_binfile(const char *filename, size_t nbr_rnds, uint32_t (*rng)(void)) {
+    
     FILE *sm_file = NULL;
     if (!(sm_file = fopen(filename, "wb"))) {
         perror("ERR: ");
@@ -109,14 +109,33 @@ size_t write_rng_bytes_to_file(const char *filename, size_t nbr_rnds, uint32_t (
 
     for (size_t i = 0; i < nbr_rnds; i++) {
         uint32_t rnd = rng();
-        written += fwrite(&rnd, 1, nbr_bytes_rng, sm_file);
+        written += fwrite(&rnd, 1, 4, sm_file);
     }
 
     fclose(sm_file);
     return written;
 }
 
-size_t write_float_rng_to_txtfile(const char *filename, size_t nbr_rnds, float (*rng)(void)) {
+size_t write_u16_rng_to_binfile(const char *filename, size_t nbr_rnds, uint16_t (*rng)(void)) {
+    
+    FILE *sm_file = NULL;
+    if (!(sm_file = fopen(filename, "wb"))) {
+        perror("ERR: ");
+        return (size_t)0;
+    }
+    
+    size_t written = 0;
+
+    for (size_t i = 0; i < nbr_rnds; i++) {
+        uint16_t rnd = rng();
+        written += fwrite(&rnd, 1, 2, sm_file);
+    }
+
+    fclose(sm_file);
+    return written;
+}
+
+size_t write_flt_rng_to_txtfile(const char *filename, size_t nbr_rnds, float (*rng)(void)) {
     
     FILE *sm_file = NULL;
     if (!(sm_file = fopen(filename, "w"))) {
@@ -191,17 +210,17 @@ int main(int argc, char **argv) {
     
     sprintf(filename, "LCG%d.bin", 16);
     size_t nbr_rnds = 512*1024;
-    size_t written = write_rng_bytes_to_file(filename, nbr_rnds, lcg_uint16, 2);
+    size_t written = write_u16_rng_to_binfile(filename, nbr_rnds, lcg_uint16);
     printf("%zu 16-bit random numbers generated. %zu bytes written to %s.\n", nbr_rnds, written, filename);
     
     sprintf(filename, "LCG%d.bin", 32);
     nbr_rnds = 256*1024;
-    written = write_rng_bytes_to_file(filename, nbr_rnds, lcg_uint32, 4);
+    written = write_u32_rng_to_binfile(filename, nbr_rnds, lcg_uint32);
     printf("%zu 32-bit random numbers generated. %zu bytes written to %s.\n", nbr_rnds, written, filename);
     /*
     strcpy(filename, "LCG_FLT32.txt");
     nbr_rnds = 51320000;
-    written = write_float_rng_to_txtfile(filename, nbr_rnds, lcg_flt);
+    written = write_flt_rng_to_txtfile(filename, nbr_rnds, lcg_flt);
     printf("%zu float32 random numbers generated. %zu bytes written to %s.\n", nbr_rnds, written, filename);
     */
     return 0;

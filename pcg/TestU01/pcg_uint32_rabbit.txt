@@ -31,21 +31,21 @@ Results of CollisionOver test:
 
 POISSON approximation                 :
 Expected number of collisions = N*Mu  :      128.00
-Observed number of collisions         :      111
-p-value of test                       :    0.93
+Observed number of collisions         :      129
+p-value of test                       :    0.48
 
 -----------------------------
 Total number of cells containing j balls
 
-  j =  0                              :     274869518447
-  j =  1                              :          8388386
-  j =  2                              :              111
+  j =  0                              :     274869518465
+  j =  1                              :          8388350
+  j =  2                              :              129
   j =  3                              :                0
   j =  4                              :                0
   j =  5                              :                0
 
 -----------------------------------------------
-CPU time used                    :  00:00:04.20
+CPU time used                    :  00:00:04.29
 
 Generator state:
  8388608  bits have been read.
@@ -119,11 +119,11 @@ svaria_AppearanceSpacings test:
 
 
 -----------------------------------------------
-Normal statistic                      :   -0.13
-p-value of test                       :    0.55
+Normal statistic                      :    1.04
+p-value of test                       :    0.15
 
 -----------------------------------------------
-CPU time used                    :  00:00:00.00
+CPU time used                    :  00:00:00.01
 
 Generator state:
  8388608  bits have been read.
@@ -145,13 +145,13 @@ scomp_LinearComp test:
 
 -----------------------------------------------
 Number of degrees of freedom          :    7
-Chi2 statistic for size of jumps      :    9.48
-p-value of test                       :    0.22
+Chi2 statistic for size of jumps      :   10.80
+p-value of test                       :    0.15
 
 
 -----------------------------------------------
-Normal statistic for number of jumps  :   -0.35
-p-value of test                       :    0.64
+Normal statistic for number of jumps  :    2.09
+p-value of test                       :    0.02
 
 
 
@@ -176,11 +176,11 @@ scomp_LempelZiv test:
 
 
 -----------------------------------------------
-Normal statistic                      :    0.68
-p-value of test                       :    0.25
+Normal statistic                      :    1.88
+p-value of test                       :    0.03
 
 -----------------------------------------------
-CPU time used                    :  00:00:00.25
+CPU time used                    :  00:00:00.29
 
 Generator state:
  8388608  bits have been read.
@@ -200,11 +200,11 @@ sspectral_Fourier1 test:
 
 
 -----------------------------------------------
-Normal statistic                      :    0.74
-p-value of test                       :    0.23
+Normal statistic                      :    0.66
+p-value of test                       :    0.26
 
 -----------------------------------------------
-CPU time used                    :  00:00:00.20
+CPU time used                    :  00:00:00.24
 
 Generator state:
  1048576  bits have been read.
@@ -225,17 +225,17 @@ sspectral_Fourier3 test:
 
 -----------------------------------------------
 
-Kolmogorov-Smirnov+ statistic = D+    :   0.026
-p-value of test                       :    0.48
+Kolmogorov-Smirnov+ statistic = D+    :   0.010
+p-value of test                       :    0.89
 
-Kolmogorov-Smirnov- statistic = D-    :   0.035
-p-value of test                       :    0.28
+Kolmogorov-Smirnov- statistic = D-    :   0.038
+p-value of test                       :    0.22
 
-Anderson-Darling statistic = A2       :    0.87
-p-value of test                       :    0.43
+Anderson-Darling statistic = A2       :    0.42
+p-value of test                       :    0.83
 
 -----------------------------------------------
-CPU time used                    :  00:00:00.09
+CPU time used                    :  00:00:00.08
 
 Generator state:
  8386560  bits have been read.
@@ -256,17 +256,17 @@ sstring_LongestHeadRun test:
 
 -----------------------------------------------
 Number of degrees of freedom          :    3
-Chi-square statistic                  :    2.88
-p-value of test                       :    0.41
+Chi-square statistic                  :    1.67
+p-value of test                       :    0.64
 
 -----------------------------------------------
-Global longest run of 1               :   25.00
-p-value of test                       :    0.12
+Global longest run of 1               :   22.00
+p-value of test                       :    0.50
 
 
 
 -----------------------------------------------
-CPU time used                    :  00:00:00.03
+CPU time used                    :  00:00:00.04
 
 Generator state:
  8388480  bits have been read.
@@ -287,11 +287,11 @@ sstring_PeriodsInStrings test:
 
 -----------------------------------------------
 Number of degrees of freedom          :   80
-Chi-square statistic                  :   94.11
-p-value of test                       :    0.13
+Chi-square statistic                  :   88.24
+p-value of test                       :    0.25
 
 -----------------------------------------------
-CPU time used                    :  00:00:00.01
+CPU time used                    :  00:00:00.00
 
 Generator state:
  8388608  bits have been read.
@@ -312,8 +312,8 @@ sstring_HammingWeight test:
 
 -----------------------------------------------
 Number of degrees of freedom          :   22
-Chi-square statistic                  :   16.15
-p-value of test                       :    0.81
+Chi-square statistic                  :   27.83
+p-value of test                       :    0.18
 
 -----------------------------------------------
 CPU time used                    :  00:00:00.00
@@ -337,8 +337,8 @@ sstring_HammingCorr test:
 
 
 -----------------------------------------------
-Normal statistic                      :   -0.34
-p-value of test                       :    0.63
+Normal statistic                      :   -0.31
+p-value of test                       :    0.62
 
 -----------------------------------------------
 CPU time used                    :  00:00:00.00
@@ -362,8 +362,8 @@ sstring_HammingCorr test:
 
 
 -----------------------------------------------
-Normal statistic                      :    1.31
-p-value of test                       :    0.10
+Normal statistic                      :   -1.17
+p-value of test                       :    0.88
 
 -----------------------------------------------
 CPU time used                    :  00:00:00.00
@@ -387,8 +387,8 @@ sstring_HammingCorr test:
 
 
 -----------------------------------------------
-Normal statistic                      :    1.05
-p-value of test                       :    0.15
+Normal statistic                      :   -0.19
+p-value of test                       :    0.58
 
 -----------------------------------------------
 CPU time used                    :  00:00:00.00
@@ -414,8 +414,8 @@ sstring_HammingIndep test:
 Counters with expected numbers >= 10
 -----------------------------------------------
 Number of degrees of freedom          :  169
-Chi-square statistic                  :  164.53
-p-value of test                       :    0.58
+Chi-square statistic                  :  166.68
+p-value of test                       :    0.54
 
 -----------------------------------------------
 CPU time used                    :  00:00:00.00
@@ -441,8 +441,8 @@ sstring_HammingIndep test:
 Counters with expected numbers >= 10
 -----------------------------------------------
 Number of degrees of freedom          :  277
-Chi-square statistic                  :  271.87
-p-value of test                       :    0.58
+Chi-square statistic                  :  291.27
+p-value of test                       :    0.27
 
 -----------------------------------------------
 CPU time used                    :  00:00:00.00
@@ -468,8 +468,8 @@ sstring_HammingIndep test:
 Counters with expected numbers >= 10
 -----------------------------------------------
 Number of degrees of freedom          :  421
-Chi-square statistic                  :  394.96
-p-value of test                       :    0.81
+Chi-square statistic                  :  416.52
+p-value of test                       :    0.55
 
 -----------------------------------------------
 CPU time used                    :  00:00:00.00
@@ -492,11 +492,11 @@ sstring_AutoCor test:
 
 
 -----------------------------------------------
-Normal statistic                      :   -0.74
-p-value of test                       :    0.77
+Normal statistic                      :   -0.43
+p-value of test                       :    0.67
 
 -----------------------------------------------
-CPU time used                    :  00:00:00.00
+CPU time used                    :  00:00:00.01
 
 Generator state:
  8388576  bits have been read.
@@ -516,11 +516,11 @@ sstring_AutoCor test:
 
 
 -----------------------------------------------
-Normal statistic                      :    0.37
-p-value of test                       :    0.35
+Normal statistic                      :   -2.22
+p-value of test                       :    0.99
 
 -----------------------------------------------
-CPU time used                    :  00:00:00.01
+CPU time used                    :  00:00:00.00
 
 Generator state:
  8388576  bits have been read.
@@ -543,23 +543,23 @@ sstring_Run test:
 Total number of 1 runs:  1677724
 
 Number of degrees of freedom          :   34
-Chi2 statistic for number of runs     :   38.19
-p-value of test                       :    0.28
+Chi2 statistic for number of runs     :   48.46
+p-value of test                       :    0.05
 
 
 -----------------------------------------------
-Total number of bits:  6712320
+Total number of bits:  6711424
 
-Normal statistic for number of bits   :    0.39
-p-value of test                       :    0.35
+Normal statistic for number of bits   :    0.15
+p-value of test                       :    0.44
 
 
 
 -----------------------------------------------
-CPU time used                    :  00:00:00.03
+CPU time used                    :  00:00:00.04
 
 Generator state:
- 6712320  bits have been read.
+ 6711424  bits have been read.
 
 
 
@@ -577,8 +577,8 @@ smarsa_MatrixRank test:
 
 -----------------------------------------------
 Number of degrees of freedom          :    3
-Chi-square statistic                  :    7.58
-p-value of test                       :    0.06
+Chi-square statistic                  :    1.65
+p-value of test                       :    0.65
 
 -----------------------------------------------
 CPU time used                    :  00:00:00.04
@@ -602,8 +602,8 @@ smarsa_MatrixRank test:
 
 -----------------------------------------------
 Number of degrees of freedom          :    2
-Chi-square statistic                  :    0.35
-p-value of test                       :    0.84
+Chi-square statistic                  :    0.21
+p-value of test                       :    0.90
 
 -----------------------------------------------
 CPU time used                    :  00:00:00.05
@@ -630,40 +630,40 @@ swalk_RandomWalk1 test:
 Test on the values of the Statistic H
 
 Number of degrees of freedom          :   40
-ChiSquare statistic                   :   35.62
-p-value of test                       :    0.67
+ChiSquare statistic                   :   37.53
+p-value of test                       :    0.58
 
 
 -----------------------------------------------
 Test on the values of the Statistic M
 
 Number of degrees of freedom          :   40
-ChiSquare statistic                   :   62.86
-p-value of test                       :    0.01
+ChiSquare statistic                   :   42.62
+p-value of test                       :    0.36
 
 
 -----------------------------------------------
 Test on the values of the Statistic J
 
 Number of degrees of freedom          :   64
-ChiSquare statistic                   :   66.19
-p-value of test                       :    0.40
+ChiSquare statistic                   :   67.17
+p-value of test                       :    0.37
 
 
 -----------------------------------------------
 Test on the values of the Statistic R
 
 Number of degrees of freedom          :   35
-ChiSquare statistic                   :   34.82
-p-value of test                       :    0.48
+ChiSquare statistic                   :   39.37
+p-value of test                       :    0.28
 
 
 -----------------------------------------------
 Test on the values of the Statistic C
 
 Number of degrees of freedom          :   21
-ChiSquare statistic                   :   29.24
-p-value of test                       :    0.11
+ChiSquare statistic                   :   30.02
+p-value of test                       :    0.09
 
 
 -----------------------------------------------
@@ -691,44 +691,44 @@ swalk_RandomWalk1 test:
 Test on the values of the Statistic H
 
 Number of degrees of freedom          :   86
-ChiSquare statistic                   :   99.49
-p-value of test                       :    0.15
+ChiSquare statistic                   :   88.03
+p-value of test                       :    0.42
 
 
 -----------------------------------------------
 Test on the values of the Statistic M
 
 Number of degrees of freedom          :   86
-ChiSquare statistic                   :   83.56
-p-value of test                       :    0.55
+ChiSquare statistic                   :   98.67
+p-value of test                       :    0.17
 
 
 -----------------------------------------------
 Test on the values of the Statistic J
 
 Number of degrees of freedom          :  512
-ChiSquare statistic                   :  546.19
-p-value of test                       :    0.14
+ChiSquare statistic                   :  545.63
+p-value of test                       :    0.15
 
 
 -----------------------------------------------
 Test on the values of the Statistic R
 
 Number of degrees of freedom          :   84
-ChiSquare statistic                   :   70.19
-p-value of test                       :    0.86
+ChiSquare statistic                   :   86.50
+p-value of test                       :    0.40
 
 
 -----------------------------------------------
 Test on the values of the Statistic C
 
 Number of degrees of freedom          :   47
-ChiSquare statistic                   :   40.85
-p-value of test                       :    0.72
+ChiSquare statistic                   :   54.59
+p-value of test                       :    0.21
 
 
 -----------------------------------------------
-CPU time used                    :  00:00:00.03
+CPU time used                    :  00:00:00.04
 
 Generator state:
  8388608  bits have been read.
@@ -752,40 +752,40 @@ swalk_RandomWalk1 test:
 Test on the values of the Statistic H
 
 Number of degrees of freedom          :   69
-ChiSquare statistic                   :   60.11
-p-value of test                       :    0.77
+ChiSquare statistic                   :   47.51
+p-value of test                       :    0.98
 
 
 -----------------------------------------------
 Test on the values of the Statistic M
 
 Number of degrees of freedom          :   69
-ChiSquare statistic                   :   51.83
-p-value of test                       :    0.94
+ChiSquare statistic                   :   53.35
+p-value of test                       :    0.92
 
 
 -----------------------------------------------
 Test on the values of the Statistic J
 
 Number of degrees of freedom          :   81
-ChiSquare statistic                   :   77.14
-p-value of test                       :    0.60
+ChiSquare statistic                   :   87.04
+p-value of test                       :    0.30
 
 
 -----------------------------------------------
 Test on the values of the Statistic R
 
 Number of degrees of freedom          :   69
-ChiSquare statistic                   :   83.87
-p-value of test                       :    0.11
+ChiSquare statistic                   :   60.98
+p-value of test                       :    0.74
 
 
 -----------------------------------------------
 Test on the values of the Statistic C
 
 Number of degrees of freedom          :   64
-ChiSquare statistic                   :   55.99
-p-value of test                       :    0.75
+ChiSquare statistic                   :   73.72
+p-value of test                       :    0.19
 
 
 -----------------------------------------------
@@ -804,7 +804,7 @@ Generator state:
  File:             PCG32.bin
  Number of bits:   8388608
  Number of statistics:  39
- Total CPU time:   00:00:05.46
+ Total CPU time:   00:00:05.67
 
  All tests were passed
 

@@ -133,10 +133,11 @@ int main(int argc, char **argv) {
     size_t nbr_rnds = 256*1024;
     size_t written = write_rng_bytes_to_file(filename, nbr_rnds, pcg_uint32, 4);
     printf("%zu 32-bit random numbers generated. %zu bytes written to %s.\n", nbr_rnds, written, filename);
+    
     /*
     strcpy(filename, "PCG_FLT64.txt");
     nbr_rnds = 51320000;
-    written = write_float_rng_to_txtfile(filename, nbr_rnds, pcg_dbl);
+    written = write_double_rng_to_txtfile(filename, nbr_rnds, pcg_dbl);
     printf("%zu float64 random numbers generated. %zu bytes written to %s.\n", nbr_rnds, written, filename);
     */
     return 0;
