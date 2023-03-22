@@ -1,6 +1,8 @@
 #ifndef LCG_H
 #define LCG_H 1
 
+#include <stdint.h>
+
 /* Largest number that lcg_uint16 can generate: 65535 = 2^16 - 1 */
 #define LCG_UINT16_MAX 0xFFFF
 
@@ -30,7 +32,6 @@ uint32_t lcg_uint32(void);
 
 /* Generates uniformly distributed random float32 f such that 0 <= f < 1 */
 float lcg_flt(void);
-
 
 #ifdef __cplusplus
 }
