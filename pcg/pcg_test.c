@@ -72,8 +72,8 @@ void test_pcg_dbl(size_t size) {
     printf("IDEAL std: %.16e, std/avg: %.16e\n", ideal_std, ideal_std/ideal_avg);
 }
 
-size_t write_rng_bytes_to_file(const char *filename, size_t nbr_rnds, uint32_t (*rng)(void), unsigned nbr_bytes_rng) {
-    assert(nbr_bytes_rng <= 4);
+size_t write_u32_rng_to_binfile(const char *filename, size_t nbr_rnds, uint32_t (*rng)(void)) {
+    
     FILE *sm_file = NULL;
     if (!(sm_file = fopen(filename, "wb"))) {
         perror("ERR: ");
@@ -84,11 +84,29 @@ size_t write_rng_bytes_to_file(const char *filename, size_t nbr_rnds, uint32_t (
 
     for (size_t i = 0; i < nbr_rnds; i++) {
         uint32_t rnd = rng();
-        written += fwrite(&rnd, 1, nbr_bytes_rng, sm_file);
+        written += fwrite(&rnd, 1, 4, sm_file);
     }
 
     fclose(sm_file);
     return written;
+}
+
+double time_u32_rng(size_t nbr_rnd, uint32_t (*rng)(void)) {
+    clock_t tik;
+    tik = clock();
+    for(size_t i = 0; i < nbr_rnd; i++)
+        (void)rng();
+    tik = clock() - tik;
+    return (double)tik / CLOCKS_PER_SEC;
+}
+
+double time_dbl_rng(size_t nbr_rnd, double (*rng)(void)) {
+    clock_t tik;
+    tik = clock();
+    for(size_t i = 0; i < nbr_rnd; i++)
+        (void)rng();
+    tik = clock() - tik;
+    return (double)tik / CLOCKS_PER_SEC;
 }
 
 size_t write_double_rng_to_txtfile(const char *filename, size_t nbr_rnds, double (*rng)(void)) {
@@ -119,19 +137,21 @@ int main(int argc, char **argv) {
     
     pcg_seed(((uint64_t)time(NULL)) ^ ex_sd);
     
-    
     puts("pcg_uint32 test:");
-    test_pcg_uint32((size_t)UINT32_MAX);
+    test_pcg_uint32((size_t)UINT32_MAX);   
     
     puts("pcg_dbl test:");
     test_pcg_dbl((size_t)UINT32_MAX);
     
+    size_t size = 1000000000;    
+    printf("It took %.3fs to generate %zu uint32 random numbers.\n", time_u32_rng(size, pcg_uint32), size);
+    printf("It took %.3fs to generate %zu double random numbers.\n", time_dbl_rng(size, pcg_dbl), size);
     
     char filename[32]; *filename = 0;
         
     sprintf(filename, "PCG%d.bin", 32);
     size_t nbr_rnds = 256*1024;
-    size_t written = write_rng_bytes_to_file(filename, nbr_rnds, pcg_uint32, 4);
+    size_t written = write_u32_rng_to_binfile(filename, nbr_rnds, pcg_uint32);
     printf("%zu 32-bit random numbers generated. %zu bytes written to %s.\n", nbr_rnds, written, filename);
     
     /*

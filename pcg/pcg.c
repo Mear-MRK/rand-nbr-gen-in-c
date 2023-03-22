@@ -1,7 +1,7 @@
 #include "pcg.h"
 #include <stdint.h>
 
-#define MULT 6364136223846793005ull // 3935559000370003845ull
+#define MULT 6364136223846793005ull
 #define INC 3210482851ull
 #define INIT_INTERN_STAT 0x4d595df4d0f33173ull
 
