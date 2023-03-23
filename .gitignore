@@ -54,3 +54,8 @@ dkms.conf
 # Data
 *.bin
 *.dat
+
+# Test bin
+test
+testu01
+
