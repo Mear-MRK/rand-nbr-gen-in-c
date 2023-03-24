@@ -3,7 +3,7 @@
 
 #include <stdint.h>
 
-/* Largest number that lcg_uint16 can generate: 2^32 - 1 */
+/* Largest number that pcg_uint32 can generate: 2^32 - 1 */
 #define PCG_UINT32_MAX UINT32_MAX
 
 /* Minimum distance between two randomly generated float64 by pcg_dbl: 2^-53 */
