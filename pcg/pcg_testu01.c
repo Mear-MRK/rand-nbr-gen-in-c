@@ -30,7 +30,7 @@ int main ()
    
    pcg_seed(time(NULL));
 
-   bbattery_Crush (gen);
+   bbattery_Crush(gen);
     
    free(gen);
    return 0;
