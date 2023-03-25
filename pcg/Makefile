@@ -3,7 +3,7 @@ CFLAGS:=-std=c99 -Wall -Wextra -O3 -c
 LD=$(CC)
 LDFLAGS:=-lm
 TESTU01_INCFLAGS=-I${HOME}/include
-TESTU01_LDFLAGS=-L${HOME}/lib -ltestu01
+TESTU01_LDFLAGS=-L${HOME}/lib -ltestu01 -lmylib -lprobdist -lwsock32
 
 all: pcg.o test
 
