@@ -9,6 +9,9 @@
 /* Minimum distance between two randomly generated float64 by pcg_dbl: 2^-53 */
 #define PCG_DBL_EPS 1.11022302462515654E-16
 
+/* Minimum distance between two randomly generated float32 by pcg_flt: 2^-24 */
+#define PCG_FLT_EPS 5.960464478E-8F
+
 #ifdef __cplusplus
 extern "C"
 {
@@ -25,6 +28,9 @@ uint32_t pcg_uint32(void);
 
 /* Generates uniformly distributed random float64 f such that 0 <= f < 1 */
 double pcg_dbl(void);
+
+/* Generates uniformly distributed random float32 f such that 0 <= f < 1 */
+float pcg_flt(void);
 
 #ifdef __cplusplus
 }

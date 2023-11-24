@@ -72,6 +72,39 @@ void test_pcg_dbl(size_t size) {
     printf("IDEAL std: %.16e, std/avg: %.16e\n", ideal_std, ideal_std/ideal_avg);
 }
 
+void test_pcg_flt(size_t size) {
+    long double sum = 0., sum2 = 0.;
+    // printf("size of long double %llu\n", sizeof(long double));
+    double max = FLT_MIN, min = FLT_MAX;
+    double d;
+    size_t count_anomaly = 0;
+    for(size_t i = 0; i < size; i++){
+        d = pcg_flt();
+        if (d < min)
+            min = d;
+        if (d > max)
+            max = d;
+        if (d >= 1.0 || d < 0.0)
+            count_anomaly++;
+        sum += d;
+        sum2 += d*d;
+    }
+    double avg = sum / size;
+    double std = sqrt(sum2/size - (sum/size)*(sum/size));
+    if (count_anomaly)
+        printf("Nbr of anomalies: %zu\n", count_anomaly);
+    
+    double ideal_max = 1.0 - PCG_FLT_EPS;
+    double ideal_avg = ideal_max * 0.5;
+    double ideal_std = ideal_max * ideal_max * sqrt(1./3 - 1./4 + PCG_FLT_EPS/6/ideal_max);
+    
+    printf("      min: %.8e, max: %.8e, avg: %.8e\n", min, max, avg);
+    printf("IDEAL min: %.8e, max: %.8e, avg: %.8e\n", 0.0, ideal_max, ideal_avg);
+    
+    printf("      std: %.8e, std/avg: %.8e\n", std, std/avg);
+    printf("IDEAL std: %.8e, std/avg: %.8e\n", ideal_std, ideal_std/ideal_avg);
+}
+
 size_t write_u32_rng_to_binfile(const char *filename, size_t nbr_rnds, uint32_t (*rng)(void)) {
     
     FILE *sm_file = NULL;
@@ -101,6 +134,15 @@ double time_u32_rng(size_t nbr_rnd, uint32_t (*rng)(void)) {
 }
 
 double time_dbl_rng(size_t nbr_rnd, double (*rng)(void)) {
+    clock_t tik;
+    tik = clock();
+    for(size_t i = 0; i < nbr_rnd; i++)
+        (void)rng();
+    tik = clock() - tik;
+    return (double)tik / CLOCKS_PER_SEC;
+}
+
+double time_flt_rng(size_t nbr_rnd, float (*rng)(void)) {
     clock_t tik;
     tik = clock();
     for(size_t i = 0; i < nbr_rnd; i++)
@@ -143,10 +185,14 @@ int main(int argc, char **argv) {
     puts("pcg_dbl test:");
     test_pcg_dbl((size_t)UINT32_MAX);
     
+    puts("pcg_flt test:");
+    test_pcg_flt((size_t)UINT32_MAX);
+
     size_t size = 1000000000;    
     printf("It took %.3fs to generate %zu uint32 random numbers.\n", time_u32_rng(size, pcg_uint32), size);
     printf("It took %.3fs to generate %zu double random numbers.\n", time_dbl_rng(size, pcg_dbl), size);
-    
+    printf("It took %.3fs to generate %zu float random numbers.\n", time_flt_rng(size, pcg_flt), size);
+
     char filename[32]; *filename = 0;
         
     sprintf(filename, "PCG%d.bin", 32);

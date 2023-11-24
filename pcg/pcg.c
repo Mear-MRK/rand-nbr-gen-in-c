@@ -52,3 +52,13 @@ double pcg_dbl(void)
     
     return ((x ^ (x >> 32)) >> 11) * PCG_DBL_EPS;   // 11 = 64 - 53
 }
+
+/* 
+ * Gives uniformly distributed random float32 (single) f such that 0.0F <= f < 1.0F.
+ * It can generate 2^24 possible values; This number has been chosen intentionally because
+ * minimum possible difference between two float32 in the range of [0.5, 1] is 2^-24.
+ */
+float pcg_flt(void)
+{
+    return (pcg_uint32() >> 8) * PCG_FLT_EPS;       // 8 = 32 - 24
+}
