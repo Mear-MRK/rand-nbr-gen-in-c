@@ -2,6 +2,11 @@ CC:=gcc
 CFLAGS:=-std=c99 -Wall -Wextra -O3 -c
 LD=$(CC)
 LDFLAGS:=-lm
+
+DESTPATH = ${HOME}
+LIBINSTPATH = ${DESTPATH}/lib
+INCINSTPATH = ${DESTPATH}/include
+
 TESTU01_INCFLAGS=-I${HOME}/include
 TESTU01_LDFLAGS=-L${HOME}/lib -ltestu01 -lmylib -lprobdist -lwsock32
 
@@ -27,3 +32,11 @@ clean:
 	rm -f *.exe
 	rm -f test
 	rm -f testu01
+
+
+install: pcg.o
+	install -d $(LIBINSTPATH)
+	install -m 644 pcg.o ${LIBINSTPATH}
+	install -d ${INCINSTPATH}
+	install -m 644 pcg.h ${INCINSTPATH}
+	@echo "====== make install ======"
